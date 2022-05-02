@@ -9,8 +9,11 @@ clear
 
 echo Here are the block devices:
 echo $(ls /dev/sd? )
+echo.
+echo Your system disk is: $(lsblk -oMOUNTPOINT,PKNAME -P | grep 'MOUNTPOINT="/"' | sed 's/[0-9]*$//')
+echo.
 #wait for input $disk
-blocksize=$(blockdev --getbsz $disk)
+blocksize=$(blockdev --getpbsz $disk)
 
 echo You're about to $type fill $disk with $blocksize bytes per block. Are you sure?
 #choice y/n
