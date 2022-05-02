@@ -7,5 +7,5 @@ I frequently work with spinning disks from terminal and needed an easy way to op
 
 <b>USAGE</b>
 
-./wipedisk.sh urandom
+./wipedisk.sh [urandom|random|zero]
 
