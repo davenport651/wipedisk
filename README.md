@@ -1,4 +1,11 @@
 # wipedisk
-A simple bash script to wipe a disk at it's native physical blocksize.
+A bash script to wipe a disk at it's native physical blocksize.
 
-Basically, I frequently work with disks from terminal and can never remember the blockdev command to get the physical blocksize to optimize wipe time on a disk. I want a script makes it easy to execute "wipedisk urandom /dev/sdX" (or something like that).
+Context: A modern disk with a 4K physical blocksize requires eight write commands per block at the traditional logical blocksize of 512. On SSDs, this wouldn't matter (you should be using Secure Erase anyway), but on a spinning disks this can greatly increase the time required to fill or wipe the complete disk.
+
+I frequently work with spinning disks from terminal and needed an easy way to optimize wipe time without having to remember the awkward blockdev --getpbsz $device command. So here's a script that makes it easy to wipe a disk as quickly as possible.
+
+<b>USAGE</b>
+
+./wipedisk.sh urandom
+
